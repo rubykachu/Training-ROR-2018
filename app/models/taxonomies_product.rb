@@ -1,0 +1,2 @@
+class TaxonomiesProduct < ApplicationRecord
+end
