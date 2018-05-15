@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'admin', media: 'all' %>
+    <%= javascript_include_tag 'admin' %>
+  </head>
+
+  <body>
+    <%= render partial: 'admin/shared/header' %>
+
+    <div class="page-content">
+      <div class="row <%= @klass_content %>">
+        <%= render partial: 'admin/shared/sidebar' %>
+        <%= yield %>
+      </div>
+    </div>
+
+    <%= render partial: 'admin/shared/footer' %>
+  </body>
+</html>
