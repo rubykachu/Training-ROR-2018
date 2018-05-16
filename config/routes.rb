@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   root 'guest/homepage#index'
   get '/hello', to: 'hello_world#index'
 
-  namespace :admin do
+  scope module: 'admin', path: 'admin' do
     get '/hello', to: 'hello_world#index'
 
     resources :dashboard, only: :index
+    resources :users
   end
 
   scope module: :guest do

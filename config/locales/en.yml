@@ -4,6 +4,6 @@
 #     <%= t('hello') %>
 en:
   invalid:
-    email: invalid
+    email: invalid format
     password: is too weak. Must contain 8 or more characters, a digit,
       a lower case character, an upper case character, a symbol

@@ -1,4 +1,4 @@
-class PasswordValidator < ActiveModel::EachValidator
+class PasswordStrongValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     password_format = /\A
       (?=.{8,})          # Must contain 8 or more characters

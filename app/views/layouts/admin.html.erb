@@ -13,6 +13,7 @@
     <div class="page-content">
       <div class="row <%= @klass_content %>">
         <%= render partial: 'admin/shared/sidebar' %>
+        <%= flash_notify %>
         <%= yield %>
       </div>
     </div>
