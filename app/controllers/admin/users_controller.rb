@@ -1,5 +1,6 @@
-class Admin::UsersController < AdminController
+# frozen_string_literal: true
 
+class Admin::UsersController < AdminController
   def index
     User.all
   end
@@ -32,12 +33,12 @@ class Admin::UsersController < AdminController
 
   private
 
-  def permit_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :is_admin)
-  end
+    def permit_params
+      params.require(:user).permit(:email, :password, :password_confirmation, :is_admin)
+    end
 
-  def user
-    return @user if @user
-    @user = User.find(params[:id])
-  end
+    def user
+      return @user if @user
+      @user = User.find(params[:id])
+    end
 end
