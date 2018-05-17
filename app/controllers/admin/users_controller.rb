@@ -2,7 +2,7 @@
 
 class Admin::UsersController < AdminController
   def index
-    User.all
+    @users = User.all.order(:email)
   end
 
   def new
@@ -29,6 +29,7 @@ class Admin::UsersController < AdminController
 
   def destroy
     user.destroy!
+    redirect_to users_path
   end
 
   private

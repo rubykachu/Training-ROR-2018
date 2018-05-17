@@ -1,0 +1,14 @@
+<%
+  button ||= nil
+  symbol = icon.present? ? "<span class='glyphicon glyphicon-#{icon}'></span>".html_safe : ''
+%>
+<div class="box-header">
+  <div class="box-header__title"><%= title %></div>
+  <% if button.present? %>
+    <div class="box-header__options">
+      <a href="<%= new_user_path %>" class="btn btn-primary btn-xs" data-rel="collapse">
+         <%= symbol + ' ' + button %>
+      </a>
+    </div>
+  <% end %>
+</div>
