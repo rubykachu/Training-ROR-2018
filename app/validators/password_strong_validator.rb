@@ -1,4 +1,6 @@
-class PasswordValidator < ActiveModel::EachValidator
+# frozen_string_literal: true
+
+class PasswordStrongValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     password_format = /\A
       (?=.{8,})          # Must contain 8 or more characters
@@ -8,7 +10,7 @@ class PasswordValidator < ActiveModel::EachValidator
       (?=.*[[:^alnum:]]) # Must contain a symbol
     /x
     unless value =~ password_format
-      record.errors[attribute] << (options[:message] || I18n.t('invalid.password'))
+      record.errors[attribute] << (options[:message] || I18n.t("invalid.password"))
     end
   end
 end
