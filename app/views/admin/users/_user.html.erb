@@ -1,0 +1,9 @@
+<% index = user_counter + 1%>
+<tr class="item-<%= index %>">
+  <td><a href="<%= edit_user_path(user) %>"><%= user[:id] %></a></td>
+  <td><%= user[:email] %></td>
+  <td><%= user[:is_admin] ? '<strong>admin</strong>'.html_safe : 'guest' %></td>
+  <td class='group-action'>
+    <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, user, method: :delete, class: 'text-danger', data: { confirm: 'Are you sure?' } %>
+  </td>
+</tr>
