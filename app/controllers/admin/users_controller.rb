@@ -28,7 +28,11 @@ class Admin::UsersController < AdminController
   end
 
   def destroy
-    user.destroy!
+    if user.destroy!
+      flash[:notice] = "#{user.email} deleted successfully"
+    else
+      flash[:alert] = "#{user.email} deleted failed"
+    end
     redirect_to users_path
   end
 

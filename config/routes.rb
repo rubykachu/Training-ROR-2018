@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     resources :dashboard, only: :index
     resources :users
+    resources :taxonomies
   end
 
   scope module: :guest do

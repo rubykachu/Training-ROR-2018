@@ -31,7 +31,7 @@ module ApplicationHelper
     if object.try(:errors).try(:any?)
       act_create? ? render(:new) : render(:edit)
     else
-      redirect_to edit_user_path(object), notice: message_notify(object)
+      redirect_to edit_polymorphic_path(object), notice: message_notify(object)
     end
   end
 

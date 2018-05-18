@@ -1,12 +1,15 @@
 <%
+  # params: title (require), button, icon
+  href_new_path = "new_#{records.model_name.singular}_path"
   button ||= nil
+  icon ||= nil
   symbol = icon.present? ? "<span class='glyphicon glyphicon-#{icon}'></span>".html_safe : ''
 %>
 <div class="box-header">
   <div class="box-header__title"><%= title %></div>
   <% if button.present? %>
     <div class="box-header__options">
-      <a href="<%= new_user_path %>" class="btn btn-primary btn-xs" data-rel="collapse">
+      <a href="<%= send(href_new_path) %>" class="btn btn-primary btn-xs" data-rel="collapse">
          <%= symbol + ' ' + button %>
       </a>
     </div>

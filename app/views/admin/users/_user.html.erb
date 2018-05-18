@@ -1,5 +1,5 @@
-<% index = user_counter + 1%>
-<tr class="item-<%= index %>">
+<%# index = user_counter + 1 %>
+<tr class="item-<%= user[:id] %>">
   <td><a href="<%= edit_user_path(user) %>"><%= user[:id] %></a></td>
   <td><%= user[:email] %></td>
   <td><%= user[:is_admin] ? '<strong>admin</strong>'.html_safe : 'guest' %></td>

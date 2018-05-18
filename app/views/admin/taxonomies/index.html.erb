@@ -1,18 +1,19 @@
 <div class="col-md-6">
-  <%= render_box_header(@users, title: 'List users', button: 'Add new', icon: 'plus') %>
+  <%= render_box_header(@taxonomies, title: 'List taxonomies', button: 'Add new', icon: 'plus') %>
 
   <div class="content-box-large box-with-header">
     <table class="table table-hover">
       <thead>
         <tr>
           <th>SYSID</th>
-          <th>Email</th>
-          <th>Role</th>
+          <th>Name</th>
+          <th>Code</th>
+          <th>Position</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <%= render partial: 'user', collection: @users %>
+        <%= render partial: 'taxonomy', collection: @taxonomies %>
       </tbody>
     </table>
   </div>

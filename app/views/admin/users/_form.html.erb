@@ -33,7 +33,9 @@
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <%= form.submit yield(:submit_text), class: 'btn btn-primary' %>
+      <%= form.submit yield(:submit_text).presence || 'Submit', class: 'btn btn-primary' %>
+
+      <%#= form.submit yield(:submit_text), class: 'btn btn-primary' %>
     </div>
   </div>
 
