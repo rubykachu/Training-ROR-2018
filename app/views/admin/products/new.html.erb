@@ -1,0 +1,17 @@
+<div class="col-md-6">
+  <%= render_box_header(@product, title: 'Add new product') %>
+
+  <div class="content-box-large box-with-header">
+    <%= render 'form' %>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <%= render_box_header(@product, title: 'Product image') %>
+  <div class="content-box-large box-with-header">
+    <div class="center-block center-block--center">
+      <img src="https://jnj.brightspotcdn.com/dims4/default/b5f3d89/2147483647/thumbnail/360x360/quality/90/?url=http%3A%2F%2Fjnj-brightspot.s3.amazonaws.com%2Fe6%2F51%2F78d65117434bb058162abeaff963%2Fclean-and-clear-morning.jpeg" alt="">
+      <button class="btn btn-info"><i class="glyphicon glyphicon-refresh"></i> Upload</button>
+    </div>
+  </div>
+</div>

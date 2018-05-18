@@ -25,20 +25,26 @@ class Sidebar < ActionView::Base
     def list_items
       {
         dashboard: {
-          text: "Dashboard",
+          text: 'Dashboard',
           link: admin_path,
-          icon: "dashboard"
-        },
-        user: {
-          text: "Users",
-          link: users_path,
-          icon: "user",
+          icon: 'dashboard',
+          selected: true
         },
         taxonomy: {
-          text: "Taxonomies",
+          text: 'Taxonomies',
           link: taxonomies_path,
-          icon: "inbox",
-        }
+          icon: 'inbox',
+        },
+        product: {
+          text: 'Products',
+          link: products_path,
+          icon: 'gift'
+        },
+        user: {
+          text: 'Users',
+          link: users_path,
+          icon: 'user',
+        },
       }
     end
 end
