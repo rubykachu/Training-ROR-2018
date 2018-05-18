@@ -4,6 +4,7 @@ class CreateProducts < ActiveRecord::Migration[5.1]
   def change
     create_table :products do |t|
       t.string :name, null: false
+      t.string :slug, null: false, index: true, unique: true
       t.integer :price, null: false, index: true, unique: true
       t.integer :quantity, null: false
       t.datetime :available_on, null: false, index: true, unique: true

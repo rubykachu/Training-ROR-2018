@@ -14,3 +14,4 @@
 //= require rails-ujs
 //= require javascripts/bootstrap.min
 //= require ./admin/custom
+//= require ./concerns/slug

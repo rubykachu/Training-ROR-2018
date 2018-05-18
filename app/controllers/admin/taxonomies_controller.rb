@@ -18,7 +18,8 @@ class Admin::TaxonomiesController < AdminController
   end
 
   def create
-    @taxonomy = Taxonomy.create(permit_params)
+    @taxonomy = Taxonomy.create!(permit_params)
+    @taxonomy.update(code: @taxonomy.slug)
     redirect_after_update_or_create(@taxonomy)
   end
 
@@ -39,8 +40,7 @@ class Admin::TaxonomiesController < AdminController
   private
 
     def permit_params
-      params[:code] ||= params[:name]&.parameterize
-      params.require(:taxonomy).permit(:name, :code, :position)
+      params.require(:taxonomy).permit(:name, :slug, :position)
     end
 
     def taxonomy

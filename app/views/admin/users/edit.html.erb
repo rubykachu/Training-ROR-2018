@@ -1,9 +1,8 @@
 <% provide :submit_text, 'Update account' %>
 
-<div class="col-md-10">
-  <div class="content-box-header">
-    <div class="panel-title">Edit user</div>
-  </div>
+<div class="col-md-6">
+  <%= render_box_header(@user, title: "Edit user: #{@user.email}", button: 'Add new', icon: 'plus') %>
+
   <div class="content-box-large box-with-header">
     <%= render 'form' %>
   </div>
