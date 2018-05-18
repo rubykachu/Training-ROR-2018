@@ -1,0 +1,32 @@
+<%= form_with model: @taxonomy, local: true, class: 'form-horizontal', html: { role: 'form'} do |form| %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <%= form.text_field :name, class: 'form-control', placeholder: 'Name'  %>
+      <%= msg_form_errors @taxonomy, :name %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Code</label>
+    <div class="col-sm-10">
+      <%= form.text_field :code, class: 'form-control', placeholder: 'Code'  %>
+      <%= msg_form_errors @taxonomy, :code %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Position</label>
+    <div class="col-sm-10">
+      <%= form.number_field :position, min: 0, class: 'form-control', placeholder: 'Position'  %>
+      <%= msg_form_errors @taxonomy, :position %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.submit yield(:submit_text).presence || 'Submit', class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+<% end %>

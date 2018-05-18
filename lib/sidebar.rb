@@ -33,7 +33,11 @@ class Sidebar < ActionView::Base
           text: "Users",
           link: users_path,
           icon: "user",
-          selected: true
+        },
+        taxonomy: {
+          text: "Taxonomies",
+          link: taxonomies_path,
+          icon: "inbox",
         }
       }
     end
