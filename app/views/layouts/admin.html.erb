@@ -4,7 +4,7 @@
     <title>Admin</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'admin', media: 'all' %>
-    <%= yield(:css_head) %>
+    <%= yield(:css) %>
   </head>
 
   <body>
@@ -20,6 +20,7 @@
 
     <%= render partial: 'admin/shared/footer' %>
     <%= javascript_include_tag 'admin' %>
-    <%= yield(:js_foot) %>
+    <%= yield(:js) %>
+    <%= yield(:script) %>
   </body>
 </html>

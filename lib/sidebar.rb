@@ -27,18 +27,24 @@ class Sidebar < ActionView::Base
         dashboard: {
           text: "Dashboard",
           link: admin_path,
-          icon: "dashboard"
+          icon: "dashboard",
+          selected: true
+        },
+        taxonomy: {
+          text: "Taxonomies",
+          link: taxonomies_path,
+          icon: "inbox",
+        },
+        product: {
+          text: "Products",
+          link: products_path,
+          icon: "gift"
         },
         user: {
           text: "Users",
           link: users_path,
           icon: "user",
         },
-        taxonomy: {
-          text: "Taxonomies",
-          link: taxonomies_path,
-          icon: "inbox",
-        }
       }
     end
 end

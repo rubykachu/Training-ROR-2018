@@ -1,0 +1,11 @@
+<tr class="item-<%= product[:id] %>">
+  <td><a href="<%= edit_product_path(product) %>"><%= product[:id] %></a></td>
+  <td><%= product[:code] %></td>
+  <td><%= product[:name] %></td>
+  <td><%= product.format_price %></td>
+  <td><%= date_to_string product[:available_on] %></td>
+  <td><%= date_to_string product[:discontinue_on] %></td>
+  <td class='group-action'>
+    <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, product, method: :delete, class: 'text-danger', data: { confirm: 'Are you sure?' } %>
+  </td>
+</tr>

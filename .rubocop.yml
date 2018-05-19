@@ -13,6 +13,7 @@ AllCops:
     - 'Gemfile.lock'
     - 'Rakefile'
     - 'db/schema.rb'
+    - 'db/migrate/*.rb'
     - 'config.ru'
     - 'config/application.rb'
     - 'config/environments/development.rb'
