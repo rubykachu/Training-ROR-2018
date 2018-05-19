@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180515144322) do
+ActiveRecord::Schema.define(version: 20180519054410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assets", force: :cascade do |t|
+    t.string "original", null: false
+    t.string "filename", null: false
+    t.string "type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["filename"], name: "index_assets_on_filename"
+    t.index ["type"], name: "index_assets_on_type"
+  end
+
+  create_table "assets_modules", force: :cascade do |t|
+    t.string "type", null: false
+    t.bigint "assets_id"
+    t.string "module_type"
+    t.bigint "module_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assets_id"], name: "index_assets_modules_on_assets_id"
+    t.index ["module_type", "module_id"], name: "index_assets_modules_on_module_type_and_module_id"
+    t.index ["type"], name: "index_assets_modules_on_type"
+  end
 
   create_table "line_items", force: :cascade do |t|
     t.bigint "order_id", null: false
@@ -39,6 +61,7 @@ ActiveRecord::Schema.define(version: 20180515144322) do
 
   create_table "products", force: :cascade do |t|
     t.string "name", null: false
+    t.string "code", null: false
     t.string "slug", null: false
     t.integer "price", null: false
     t.integer "quantity", null: false
@@ -47,8 +70,7 @@ ActiveRecord::Schema.define(version: 20180515144322) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["available_on"], name: "index_products_on_available_on"
-    t.index ["discontinue_on"], name: "index_products_on_discontinue_on"
-    t.index ["price"], name: "index_products_on_price"
+    t.index ["code"], name: "index_products_on_code"
     t.index ["slug"], name: "index_products_on_slug"
   end
 

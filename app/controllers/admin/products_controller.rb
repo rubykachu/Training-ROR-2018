@@ -2,7 +2,7 @@
 
 class Admin::ProductsController < AdminController
   def index
-    @products = Product.all.order(:position, :name)
+    @products = Product.all.order(:name)
   end
 
   def new
@@ -10,29 +10,28 @@ class Admin::ProductsController < AdminController
   end
 
   def edit
-    product
+    the_product
   end
 
   def show
-    product
+    the_product
   end
 
   def create
-    @product = Product.create!(permit_params)
-    @product.update(code: @product.slug)
+    @product = Product.create(permit_params)
     redirect_after_update_or_create(@product)
   end
 
   def update
-    product.update(permit_params)
-    redirect_after_update_or_create(product)
+    the_product.update(permit_params)
+    redirect_after_update_or_create(the_product)
   end
 
   def destroy
-    if product.destroy!
-      flash[:notice] = "#{product.name} deleted successfully"
+    if the_product.destroy!
+      flash[:notice] = "#{the_product.name} deleted successfully"
     else
-      flash[:alert] = "#{product.name} deleted failed"
+      flash[:alert] = "#{the_product.name} deleted failed"
     end
     redirect_to products_path
   end
@@ -40,11 +39,19 @@ class Admin::ProductsController < AdminController
   private
 
     def permit_params
-      params.require(:product).permit(:name, :slug, :position)
+      params[:product][:slug] = format_slug
+      params.require(:product).permit(%i[name code slug price quantity available_on discontinue_on])
     end
 
-    def product
+    def the_product
       return @product if @product
       @product = Product.find(params[:id])
+    end
+
+    def format_slug
+      slug = params[:product][:slug]
+      product = Product.find_by(slug: slug)
+      return slug unless product
+      "#{slug}-#{product.id}"
     end
 end

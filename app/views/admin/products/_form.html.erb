@@ -1,9 +1,16 @@
-<%
-binding.pry
-provide :css_head, 'jav'
-%>
+<% provide :css, link_assets('javascripts/form-helpers/bootstrap-formhelpers.css') %>
+<% provide :js, link_assets('javascripts/form-helpers/bootstrap-formhelpers.js') %>
+<% render_javascript_tag 'form.js' %>
 
 <%= form_with model: @product, local: true, class: 'form-horizontal', html: { role: 'form'} do |form| %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">SKU</label>
+    <div class="col-sm-10">
+      <%= form.text_field :code, class: 'form-control', placeholder: 'SKU' %>
+      <%= msg_form_errors @product, :code %>
+    </div>
+  </div>
+
   <div class="form-group">
     <label class="col-sm-2 control-label">Name</label>
     <div class="col-sm-10">
@@ -15,7 +22,7 @@ provide :css_head, 'jav'
   <div class="form-group">
     <label class="col-sm-2 control-label">Slug</label>
     <div class="col-sm-10">
-      <%= form.text_field :slug, class: 'form-control', placeholder: 'Slug' %>
+      <%= form.text_field :slug, class: 'form-control', placeholder: 'Slug', id: 'to_slug' %>
       <%= msg_form_errors @product, :slug %>
     </div>
   </div>
@@ -23,7 +30,7 @@ provide :css_head, 'jav'
   <div class="form-group">
     <label class="col-sm-2 control-label">Price</label>
     <div class="col-sm-10">
-      <%= form.text_field :price, class: 'form-control', placeholder: 'Price' %>
+      <%= form.number_field :price, value: @product.price, class: 'form-control', placeholder: 'Price', min: 0 %>
       <%= msg_form_errors @product, :price %>
     </div>
   </div>
@@ -31,7 +38,7 @@ provide :css_head, 'jav'
   <div class="form-group">
     <label class="col-sm-2 control-label">Quantity</label>
     <div class="col-sm-10">
-      <%= form.text_field :quantity, class: 'form-control', placeholder: 'Quantity' %>
+      <%= form.number_field :quantity, class: 'form-control', placeholder: 'Quantity', min: 0 %>
       <%= msg_form_errors @product, :quantity %>
     </div>
   </div>
@@ -40,7 +47,7 @@ provide :css_head, 'jav'
     <label class="col-sm-2 control-label">Available on</label>
     <div class="col-sm-10">
       <div class="bfh-datepicker" data-format="y-m-d" data-date="today"></div>
-      <%#= form.text_field :available_on, class: 'form-control', placeholder: 'Available on' %>
+      <%= form.hidden_field :available_on, class: 'form-control', placeholder: 'Available on' %>
       <%= msg_form_errors @product, :available_on %>
     </div>
   </div>
@@ -48,8 +55,8 @@ provide :css_head, 'jav'
   <div class="form-group">
     <label class="col-sm-2 control-label">Discontinue on</label>
     <div class="col-sm-10">
-      <div class="bfh-datepicker" data-format="y-m-d" data-date="today"></div>
-      <%#= form.text_field :discontinue_on, class: 'form-control', placeholder: 'Discontinue on' %>
+      <div class="bfh-datepicker" data-format="y-m-d" data-date="" data-min="today"></div>
+      <%= form.hidden_field :discontinue_on, class: 'form-control', placeholder: 'Discontinue on' %>
       <%= msg_form_errors @product, :discontinue_on %>
     </div>
   </div>
@@ -59,5 +66,4 @@ provide :css_head, 'jav'
       <%= form.submit yield(:submit_text).presence || 'Submit', class: 'btn btn-primary' %>
     </div>
   </div>
-
 <% end %>
