@@ -1,6 +1,4 @@
 $(document).ready(function(){
-
-
   $(".submenu > a").click(function(e) {
     e.preventDefault();
     var $li = $(this).parent("li");
@@ -16,5 +14,10 @@ $(document).ready(function(){
       $li.addClass("open");
     }
   });
-  
+
+  $('.bfh-datepicker').on('change.bfhdatepicker', function(){
+    var $this = $(this),
+        value = $this.val();
+    $this.next('input[type=hidden], .fake-datepicker').val(value)
+  }).change();
 });
