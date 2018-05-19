@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   scope module: "admin", path: "admin" do
     get "/hello", to: "hello_world#index"
+    get "/login", to: "sessions#new"
+    post "/login", to: "sessions#create"
+    delete "/logout", to: "sessions#destroy"
 
     resources :dashboard, only: :index
     resources :users

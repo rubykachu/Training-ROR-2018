@@ -16,11 +16,11 @@ module ViewHelper
     end
   end
 
-  def flash_notify
+  def flash_notify(width = "col-md-10")
     return if flash.blank?
     klass = flash.keys.include?("notice") ? "alert-success" : "alert-danger"
     status = flash.keys.include?("notice") ? "Success!" : "Failed!"
-    content_tag :div, class: "col-md-10" do
+    content_tag :div, class: width do
       content_tag :div, class: "alert #{klass}" do
         content_tag :strong, "#{status} #{flash[flash.keys.first]}"
       end
