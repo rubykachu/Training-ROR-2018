@@ -16,8 +16,4 @@ module ApplicationHelper
   rescue
     nil
   end
-
-  def crypto_token
-    SecureRandom.urlsafe_base64
-  end
 end

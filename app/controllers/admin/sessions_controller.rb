@@ -2,42 +2,39 @@
 
 class Admin::SessionsController < AdminController
   layout "admin_session"
-  attr_reader :password, :email
+  attr_reader :password, :email, :remember_me
+  before_action :redirect_if_logged_in, only: %i[new create]
 
   def new
     @user = User.new
   end
 
   def create
-    if user && user.authenticate(password) && admin?
-      login
-    else
-      login_failed
-    end
+    return sign_in if user && user.authenticate(password) && user.is_admin?
+    login_failed
   end
 
   def destroy
-    session.clear
+    log_out current_user
     redirect_to login_path
   end
 
   private
 
     def permit_params
-      @email = params[:user][:email].downcase!
-      @password = params[:user][:password]
-      params.require(:user).permit(:email, :password)
+      @email       = params[:user][:email].downcase!
+      @password    = params[:user][:password]
+      params.require(:user).permit(:email, :password, :remember_digest)
     end
 
     def user
-      return @user if @user
-      @user = User.find_by email: permit_params[:email]
+      @user ||= User.find_by email: permit_params[:email]
     end
 
-    def login
-      if user.update(last_login: Time.current, access_token: crypto_token)
+    def sign_in
+      if login!(user)
+        remember(user) if remember?
         redirect_to admin_path
-        create_session
       else
         redirect_to login_path, alert: "Login failed"
       end
@@ -49,15 +46,11 @@ class Admin::SessionsController < AdminController
       render :new
     end
 
-    def admin?
-      user.is_admin
+    def redirect_if_logged_in
+      redirect_to admin_path if logged_in?
     end
 
-    def create_session
-      session[:current_user] = {
-        'email': user.email,
-        'last_login': user.last_login,
-        'access_token': user.access_token
-      }
+    def remember?
+      !params[:user][:remember].to_i.zero?
     end
 end

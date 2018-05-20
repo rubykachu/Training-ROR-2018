@@ -99,17 +99,17 @@ ActiveRecord::Schema.define(version: 20180519054410) do
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
-    t.string "access_token"
-    t.string "reset_token"
+    t.string "remember_digest"
+    t.string "reset_digest"
     t.datetime "last_login"
     t.boolean "is_admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["access_token"], name: "index_users_on_access_token"
     t.index ["email"], name: "index_users_on_email"
     t.index ["last_login"], name: "index_users_on_last_login"
     t.index ["password_digest"], name: "index_users_on_password_digest"
-    t.index ["reset_token"], name: "index_users_on_reset_token"
+    t.index ["remember_digest"], name: "index_users_on_remember_digest"
+    t.index ["reset_digest"], name: "index_users_on_reset_digest"
   end
 
 end

@@ -5,8 +5,8 @@ class CreateUsers < ActiveRecord::Migration[5.1]
     create_table :users do |t|
       t.string :email, null: false, index: true, unique: true
       t.string :password_digest, null: false, index: true
-      t.string :access_token, index: true, uniq: true
-      t.string :reset_token, index: true, uniq: true
+      t.string :remember_digest, index: true, uniq: true
+      t.string :reset_digest, index: true, uniq: true
       t.datetime :last_login, index: true
       t.boolean :is_admin, default: false
       t.timestamps

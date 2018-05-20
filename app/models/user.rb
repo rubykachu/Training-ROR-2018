@@ -11,4 +11,13 @@ class User < ApplicationRecord
   def downcase_email
     self.email = email.downcase
   end
+
+  def forget_password
+    update_attribute(:remember_digest, nil)
+  end
+
+  def authenticated?(attribute, token)
+    digest = self.send("#{attribute}_digest")
+    Secure.authenticated? digest, token
+  end
 end
