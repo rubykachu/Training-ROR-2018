@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::DashboardController < AdminController
-  def index; end
+  before_action :authenticate
+
+  def index
+  end
 end

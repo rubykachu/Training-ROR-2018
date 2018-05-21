@@ -14,6 +14,6 @@ class Product < ApplicationRecord
   validates_date :discontinue_on, on_or_after: :available_on, allow_blank: true
 
   def format_price
-    number_with_delimiter(price, delimiter: '.')
+    number_with_delimiter(price, delimiter: ".")
   end
 end
