@@ -57,6 +57,8 @@ module ViewHelper
   end
 
   def render_javascript_tag(source)
-    provide :script { javascript_tag render partial: source }
+    provide :script do
+      javascript_tag render partial: source
+    end
   end
 end
